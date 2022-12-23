@@ -5,14 +5,14 @@ services:
     container_name: nginx
     ports:
       - "80:80"
-    volumes: 
+    volumes:
       - ./conf:/etc/nginx/conf.d
       - ./html:/usr/share/nginx/html
     depends_on:
       - flask
 
   flask:
-    image: "kovrigomi2/flask:1.0"
+    image: "kovrigomi2/flask:3.0"
     container_name: flask
     environment:
       - FLASK_DEBUG=True
@@ -34,3 +34,4 @@ services:
       - "5432:5432"
     volumes:
       - ./data:/var/lib/postgresql/data
+      - ./initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
